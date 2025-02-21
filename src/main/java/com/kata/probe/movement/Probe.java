@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Probe {
-    private final int x;
-    private final int y;
-    private final Direction direction;
+    private int x;
+    private int y;
+    private Direction direction;
     private final List<Position> visited;
 
     public Probe(int x, int y, Direction direction) {
@@ -27,5 +27,30 @@ public class Probe {
 
     public List<Position> getVisited() {
         return new ArrayList<>(visited); // Return a copy
+    }
+
+    public void move(Command command, Grid grid) { // Grid will be used to move forward and backward
+        switch (command) {
+            case LEFT -> turnLeft();
+            case RIGHT -> turnRight();
+        }
+    }
+
+    private void turnLeft() {
+        direction = switch (direction) {
+            case N -> Direction.W;
+            case E -> Direction.N;
+            case S -> Direction.E;
+            case W -> Direction.S;
+        };
+    }
+
+    private void turnRight() {
+        direction = switch (direction) {
+            case N -> Direction.E;
+            case E -> Direction.S;
+            case S -> Direction.W;
+            case W -> Direction.N;
+        };
     }
 }
