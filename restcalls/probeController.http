@@ -1,0 +1,22 @@
+### Execute movement commands (move forward, turn right, move forward)
+POST http://localhost:8080/probe/movement
+Content-Type: application/json
+
+[
+  "FORWARD",
+  "RIGHT",
+  "FORWARD"
+]
+
+### Get visited positions
+GET http://localhost:8080/probe/visited
+Content-Type: application/json
+
+### Test obstacle avoidance (assuming obstacle at 5,6)
+POST http://localhost:8080/probe/movement
+Content-Type: application/json
+
+[
+  "FORWARD",
+  "FORWARD"
+]
