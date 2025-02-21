@@ -31,4 +31,11 @@ public class ProbeController {
     public List<Position> getVisited() {
         return probe.getVisited();
     }
+
+    //make sense to have it
+    @GetMapping("/position")
+    @Operation(summary = "Get actual position", description = "Returns the actual position and direction of the probe")
+    public ProbeState getPosition() {
+        return new ProbeState(probe.getPosition(), probe.getDirection());
+    }
 }
