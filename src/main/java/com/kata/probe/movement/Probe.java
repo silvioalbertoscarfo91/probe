@@ -59,8 +59,13 @@ public class Probe {
     private void moveForward(Grid grid) {
         int newX = x;
         int newY = y;
-        if (direction == Direction.N) newY++;
-        if (grid.isWithinBounds(newX, newY)) {
+        switch (direction) {
+            case N -> newY++;
+            case E -> newX++;
+            case S -> newY--;
+            case W -> newX--;
+        }
+        if (isWithinBoundaries(newX, newY, grid)) {
             x = newX;
             y = newY;
             visited.add(new Position(x, y));
@@ -70,11 +75,20 @@ public class Probe {
     private void moveBackward(Grid grid) {
         int newX = x;
         int newY = y;
-        if (direction == Direction.N) newY--;
-        if (grid.isWithinBounds(newX, newY)) {
+        switch (direction) {
+            case N -> newY--;
+            case E -> newX--;
+            case S -> newY++;
+            case W -> newX++;
+        }
+        if (isWithinBoundaries(newX, newY, grid)) {
             x = newX;
             y = newY;
             visited.add(new Position(x, y));
         }
+    }
+
+    private boolean isWithinBoundaries(int newX, int newY, Grid grid) {
+        return grid.isWithinBounds(newX, newY) && !grid.isObstacle(newX, newY);
     }
 }
