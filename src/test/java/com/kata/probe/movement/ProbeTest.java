@@ -57,6 +57,42 @@ class ProbeTest {
             //then
             assertEquals(finalDirection, probe.getDirection());
         }
+
+        @Test
+        void shouldMoveForward() { //test will fail
+            //given
+            probe = new Probe(5, 5, Direction.N); //center of the future grid because the boundaries rules are not yet defined
+
+            // when
+            probe.move(Command.FORWARD, null);
+
+            //then
+            assertEquals(new Position(5, 6), probe.getPosition());
+        }
+
+        @Test
+        void shouldMoveBackward() { //test will fail
+            //given
+            probe = new Probe(5, 5, Direction.N); //center of the future grid because the boundaries rules are not yet defined
+
+            // when
+            probe.move(Command.BACKWARD, null);
+
+            //then
+            assertEquals(new Position(5, 4), probe.getPosition());
+        }
+
+        @Test
+        void shouldNotMoveOutOfBoundaries() { //test will fail
+            //given
+            probe = new Probe(0, 9, Direction.N); //next to boundaries
+
+            // when
+            probe.move(Command.FORWARD, null);
+
+            //then
+            assertEquals(new Position(0, 9), probe.getPosition()); //recognize boundaries and don't move
+        }
     }
 
     @Test
