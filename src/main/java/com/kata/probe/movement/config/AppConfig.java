@@ -12,13 +12,13 @@ import java.util.Set;
 @Configuration
 public class AppConfig {
     //assumptions:
-    //  - Grid dimension is not specified, so I decided to give it 10x10 dimensions and put 2 Obstacles
+    //  - Grid dimension is not specified, so I decided to give it 10x10 dimensions and put 3 Obstacles
     //  - Probe position is not specified, so I decided to set the Probe at (0, 0) in the grid and give North direction
     // I put those in a configuration class so then in the future they can be changed from the yaml file or defining
     // another solution and set them through API calls.
     @Bean
     public Grid grid() {
-        return new Grid(10, 10, Set.of(new Position(2, 2), new Position(3, 5)));
+        return new Grid(10, 10, Set.of(new Position(2, 2), new Position(3, 5), new Position(7, 8)));
     }
 
     @Bean
