@@ -33,6 +33,8 @@ public class Probe {
         switch (command) {
             case LEFT -> turnLeft();
             case RIGHT -> turnRight();
+            case FORWARD -> moveForward(grid);
+            case BACKWARD -> moveBackward(grid);
         }
     }
 
@@ -52,5 +54,27 @@ public class Probe {
             case S -> Direction.W;
             case W -> Direction.N;
         };
+    }
+
+    private void moveForward(Grid grid) {
+        int newX = x;
+        int newY = y;
+        if (direction == Direction.N) newY++;
+        if (grid.isWithinBounds(newX, newY)) {
+            x = newX;
+            y = newY;
+            visited.add(new Position(x, y));
+        }
+    }
+
+    private void moveBackward(Grid grid) {
+        int newX = x;
+        int newY = y;
+        if (direction == Direction.N) newY--;
+        if (grid.isWithinBounds(newX, newY)) {
+            x = newX;
+            y = newY;
+            visited.add(new Position(x, y));
+        }
     }
 }
